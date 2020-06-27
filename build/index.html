@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Minesweeper Adventure</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="gameContainer">
+	<div class="border">
+		<div id="character">
+			<h3>Player</h3>
+			<p>Health: 50</p>
+			<p>Gold: 0</p>
+		</div>
+	</div>
+	
+	<div class="border" id="map">
+		<canvas id="gameCanvas" width="512px" height="512px"></canvas>
+	</div>
+	
+	<div class="border" id="battle">
+		<button id="attack">Attack</button>
+		<button id="heal">Heal</button>
+		<button id="backToMap">Back to map</button>
+	</div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

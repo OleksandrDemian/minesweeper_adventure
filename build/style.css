@@ -1,0 +1,16 @@
+#gameContainer {
+    display: flex;
+    justify-content: center;
+}
+
+#gameContainer > div {
+    margin: 5px;
+}
+
+.border {
+    border: 2px solid #364f6b;
+}
+
+#character {
+    padding: 10px;
+}
