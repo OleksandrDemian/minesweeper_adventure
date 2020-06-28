@@ -4,27 +4,45 @@ import InventoryController from "./controllers/inventory";
 import StatsController from "./controllers/stats";
 import Stats from "./player/stats";
 import {Levels} from "./levels/levels";
+import {Rogue, Thief, Warrior} from "./player/heros";
+import HeroController from "./controllers/hero";
 
 const mapController = new MapController({ name: "map" });
 const battleController = new BattleController({ name: "battle" });
 const inventoryController = new InventoryController({ name: "inventory" });
 const statsController = new StatsController({ name: "stats" });
+const heroController = new HeroController({ name: "hero" });
 
 let CUR_LEVEL = 0;
 
-const stats = new Stats({
-	name: "Player",
-	health: 5,
-	damage: 2,
-	defence: 1,
-	dexterity: 10
-});
-statsController.setStats(stats);
-
-mapController.setOnReady(() => {
-	const level = Levels[CUR_LEVEL];
-	mapController.buildLevel(level);
-});
+export const startGame = ({ hero }) => {
+	mapController.setOnReady(() => {
+		const level = Levels[CUR_LEVEL];
+		mapController.buildLevel(level);
+	});
+	
+	let heroData = null;
+	switch (hero) {
+		case "warrior":
+			heroData = Warrior();
+			break;
+		case "thief":
+			heroData = Thief();
+			break;
+		case "rogue":
+			heroData = Rogue();
+			break;
+	}
+	
+	const stats = new Stats(heroData);
+	statsController.setStats(stats);
+	
+	inventoryController.show();
+	statsController.show();
+	heroController.hide();
+	
+	showMap();
+};
 
 export const showMap = (info) => {
 	mapController.show(info);
@@ -49,4 +67,11 @@ export const nextLevel = () => {
 	mapController.buildLevel(level);
 };
 
-showMap();
+mapController.hide();
+battleController.hide();
+inventoryController.hide();
+statsController.hide();
+
+heroController.onStart(({ hero }) => {
+	startGame({ hero })
+});

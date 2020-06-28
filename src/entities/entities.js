@@ -6,6 +6,19 @@ function onEnemy (){
 	showBattle({ enemy: this });
 }
 
+export const Snake = () => new Entity({
+	img: "deadEnemy",
+	type: Type.ENEMY,
+	onOpen: onEnemy,
+	data: {
+		name: "Snake",
+		health: 5,
+		attack: 2,
+		defence: 0,
+		dexterity: 9
+	}
+});
+
 export const Goblin = () => new Entity({
 	img: "deadEnemy",
 	type: Type.ENEMY,
@@ -26,9 +39,9 @@ export const DarkElf = () => new Entity({
 	data: {
 		name: "Dark elf",
 		health: 6,
-		attack: 2,
+		attack: 5,
 		defence: 0,
-		dexterity: 9
+		dexterity: 8
 	}
 });
 
@@ -39,22 +52,22 @@ export const Orc = () => new Entity({
 	data: {
 		name: "Orc",
 		health: 7,
-		attack: 3,
+		attack: 5,
 		defence: 2,
 		dexterity: 5
 	}
 });
 
-export const Snake = () => new Entity({
+export const DarkKnight = () => new Entity({
 	img: "deadEnemy",
 	type: Type.ENEMY,
 	onOpen: onEnemy,
 	data: {
-		name: "Snake",
-		health: 5,
-		attack: 2,
-		defence: 0,
-		dexterity: 9
+		name: "Dark Knight",
+		health: 10,
+		attack: 8,
+		defence: 4,
+		dexterity: 7
 	}
 });
 

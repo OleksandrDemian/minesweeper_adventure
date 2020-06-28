@@ -11,6 +11,7 @@ function useHealPotion(stats){
 	stats.heal(this.data.heal);
 }
 
+//POTIONS
 export const SmallHealthPotion = () => new Item({
 	name: "Small health potion",
 	type: ItemType.POTION,
@@ -41,8 +42,19 @@ export const BigHealthPotion = () => new Item({
 	}
 });
 
+//WEAPONS
 export const Dagger = () => new Item({
 	name: "Dagger",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 1,
+		dexterity: 2
+	}
+});
+
+export const SilverDagger = () => new Item({
+	name: "Silver dagger",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
 	data: {
@@ -65,13 +77,13 @@ export const ShortSword = () => new Item({
 	type: ItemType.WEAPON,
 	effect: useWeapon,
 	data: {
-		damage: 3,
+		damage: 2,
 		dexterity: 1
 	}
 });
 
 export const Sword = () => new Item({
-	name: "Wooden stick",
+	name: "Sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
 	data: {
@@ -79,6 +91,105 @@ export const Sword = () => new Item({
 	}
 });
 
+export const LongSword = () => new Item({
+	name: "Long sword",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 4,
+		dexterity: -1
+	}
+});
+
+export const SilverSword = () => new Item({
+	name: "Silver sword",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 4
+	}
+});
+
+export const ElderSword = () => new Item({
+	name: "Elder sword",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 5,
+		dexterity: 1
+	}
+});
+
+export const ElderLongSword = () => new Item({
+	name: "Elder long sword",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 6
+	}
+});
+
+export const TwoHandedSword = () => new Item({
+	name: "Two handed sword",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 7,
+		dexterity: -2
+	}
+});
+
+export const TwoHandedSilverSword = () => new Item({
+	name: "Two handed silver sword",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 8,
+		dexterity: -2
+	}
+});
+
+export const Axe = () => new Item({
+	name: "Axe",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 5,
+		dexterity: -2
+	}
+});
+
+export const SilverAxe = () => new Item({
+	name: "Axe",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 6,
+		dexterity: -2
+	}
+});
+
+export const Mace = () => new Item({
+	name: "Mace",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 6,
+		dexterity: -4
+	}
+});
+
+export const SilverMace = () => new Item({
+	name: "Silver mace",
+	type: ItemType.WEAPON,
+	effect: useWeapon,
+	data: {
+		damage: 7,
+		dexterity: -4
+	}
+});
+
+//ARMOR
 export const LeatherArmor = () => new Item({
 	name: "Leather armor",
 	type: ItemType.ARMOR,
@@ -94,27 +205,38 @@ export const WoodenArmor = () => new Item({
 	type: ItemType.ARMOR,
 	effect: useArmor,
 	data: {
-		defence: 3,
+		defence: 2,
 		dexterity: -2
 	}
 });
 
-export const TwoHandedSword = () => new Item({
-	name: "Two handed sword",
-	type: ItemType.WEAPON,
-	effect: useWeapon,
+export const SteelArmor = () => new Item({
+	name: "Steel armor",
+	type: ItemType.ARMOR,
+	effect: useArmor,
 	data: {
-		damage: 7,
-		dexterity: -2
+		defence: 4,
+		dexterity: -3
 	}
 });
 
-export const SilverSword = () => new Item({
-	name: "Silver sword",
-	type: ItemType.WEAPON,
-	effect: useWeapon,
+export const SilverArmor = () => new Item({
+	name: "Silver armor",
+	type: ItemType.ARMOR,
+	effect: useArmor,
 	data: {
-		damage: 4
+		defence: 5,
+		dexterity: -3
+	}
+});
+
+export const ElderArmor = () => new Item({
+	name: "Elder armor",
+	type: ItemType.ARMOR,
+	effect: useArmor,
+	data: {
+		defence: 6,
+		dexterity: -2
 	}
 });
 
@@ -122,18 +244,30 @@ export const Items = [
 	//level 1
 	SmallHealthPotion,
 	WoodenStick,
-	//level 2
 	Dagger,
+	Mace,
+	//level 2
 	ShortSword,
 	WoodenArmor,
 	LeatherArmor,
+	Axe,
 	//level 3
 	Sword,
+	LongSword,
 	HealthPotion,
+	SilverMace,
+	SteelArmor,
 	//level 4
 	TwoHandedSword,
+	SilverAxe,
+	SilverArmor,
+	SilverDagger,
+	ElderSword,
 	//level 5
+	TwoHandedSilverSword,
+	ElderArmor,
 	SilverSword,
-	BigHealthPotion
+	BigHealthPotion,
+	ElderLongSword
 	//level 6
 ];

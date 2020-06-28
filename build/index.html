@@ -8,15 +8,25 @@
 <body>
 
 <div id="gameContainer">
+	<div class="border" controller="hero">
+		<h3>Select your hero:</h3>
+		<select id="heroSelect">
+			<option value="rogue">Rogue</option>
+			<option value="warrior">Warrior</option>
+			<option value="thief">Thief</option>
+		</select>
+		<button enter>Enter the Minegeon</button>
+	</div>
+	
 	<div class="border" controller="inventory">
-		<h1>Inventory</h1>
+		<h3 class="text-center">Inventory</h3>
 		<div items>
 		</div>
 	</div>
 	
 	<div class="border" controller="stats">
 		<div id="character">
-			<h3>Player</h3>
+			<h3 class="text-center"><span name>Player</span></h3>
 			<p>Health: <span health>--</span></p>
 			<p>Damage: <span damage>--</span></p>
 			<p>Armor: <span armor>--</span></p>

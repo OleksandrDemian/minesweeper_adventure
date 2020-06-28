@@ -137,7 +137,7 @@ class MapController extends Controller {
 	};
 	
 	drawText(x, y, text, color = "red") {
-		this.context.font = FONT_SIZE + "px Arial";
+		this.context.font = FONT_SIZE + "px text";
 		this.context.textAlign = "center";
 		this.context.textBaseline = "middle";
 		this.context.fillStyle = color;
@@ -203,8 +203,10 @@ class MapController extends Controller {
 		this.createMap();
 		
 		const Chest = (l) => {
-			const rand = random(1, l);
-			return () => Treasure(Items[rand]());
+			return () => {
+				const rand = random(0, l);
+				return Treasure(Items[rand]())
+			};
 		};
 		
 		for(let i = 0; i < level.enemies.length; i++){
@@ -213,7 +215,7 @@ class MapController extends Controller {
 		}
 		
 		this.createEntities(Dungeon, 1);
-		this.createEntities(Chest(level.maxItemLevel), random(level.maxTreasures));
+		this.createEntities(Chest(level.maxItemLevel), random(2, level.maxTreasures));
 		
 		this.drawMap();
 	}

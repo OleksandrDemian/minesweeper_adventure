@@ -1,5 +1,3 @@
-import {random} from "../utils/utils";
-
 class Stats {
 	constructor({ name, health = 0, damage = 0, defence = 0, dexterity = 0 }) {
 		this.name = name;

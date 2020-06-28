@@ -1,9 +1,9 @@
-import {DarkElf, Goblin, Orc, Snake} from "../entities/entities";
+import {DarkElf, DarkKnight, Goblin, Orc, Snake} from "../entities/entities";
 
 export const Levels = [
 	{
 		maxTreasures: 5,
-		maxItemLevel: 2,
+		maxItemLevel: 4,
 		enemies: [
 			{ enemy: Goblin, qty: 12 },
 			{ enemy: Snake, qty: 8 }
@@ -11,7 +11,7 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 4,
-		maxItemLevel: 6,
+		maxItemLevel: 8,
 		enemies: [
 			{ enemy: Orc, qty: 5 },
 			{ enemy: Goblin, qty: 10 },
@@ -20,7 +20,7 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 3,
-		maxItemLevel: 8,
+		maxItemLevel: 12,
 		enemies: [
 			{ enemy: Orc, qty: 10 },
 			{ enemy: DarkElf, qty: 10 },
@@ -29,21 +29,22 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 4,
-		maxItemLevel: 9,
+		maxItemLevel: 16,
 		enemies: [
 			{ enemy: Orc, qty: 10 },
 			{ enemy: DarkElf, qty: 10 },
-			{ enemy: Goblin, qty: 10 },
+			{ enemy: Goblin, qty: 5 },
+			{ enemy: DarkKnight, qty: 5 },
 			{ enemy: Snake, qty: 5 }
 		]
 	},
 	{
 		maxTreasures: 3,
-		maxItemLevel: 11,
+		maxItemLevel: 20,
 		enemies: [
 			{ enemy: Orc, qty: 15 },
 			{ enemy: DarkElf, qty: 20 },
-			{ enemy: Goblin, qty: 5 }
+			{ enemy: DarkKnight, qty: 5 }
 		]
 	}
 ];

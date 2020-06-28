@@ -19,6 +19,7 @@ class StatsController extends Controller {
 	}
 	
 	updateUi(){
+		this.element.querySelector("[name]").innerText = this.stats.name;
 		this.element.querySelector("[health]").innerText = this.stats.getHealth();
 		this.element.querySelector("[damage]").innerText = this.stats.getDamage();
 		this.element.querySelector("[armor]").innerText = this.stats.getArmor();
