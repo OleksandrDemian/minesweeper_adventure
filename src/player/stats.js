@@ -56,6 +56,15 @@ class Stats {
 		
 		return a;
 	}
+	
+	hit(amount = 1){
+		amount -= this.getArmor();
+		if(amount > 0){
+			this.health -= amount;
+		}
+		
+		this.onUpdate && this.onUpdate();
+	}
 }
 
 export default Stats;

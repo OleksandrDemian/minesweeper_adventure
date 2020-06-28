@@ -1,7 +1,10 @@
 import Type from "../entities/EntityType";
-import {Empty} from "../entities/entities";
+import {Dungeon, Empty, Treasure} from "../entities/entities";
 import ImageMap from "../utils/ImageMap";
 import Controller from "./Controller";
+import {Levels} from "../levels/levels";
+import {random} from "../utils/utils";
+import {Items} from "../items/items";
 
 const CELL_SIZE = 32;
 const FONT_SIZE = 20;
@@ -186,13 +189,33 @@ class MapController extends Controller {
 				if(iy < 0 || iy >= CELLS)
 					continue;
 				
-				if(this.map[ix][iy].type === Type.ENEMY)
+				const { type, enabled } = this.map[ix][iy];
+				if(enabled && type === Type.ENEMY)
 					enemies++;
 			}
 		}
 		
 		return enemies;
 	};
+	
+	buildLevel(level){
+		this.createMap();
+		
+		const Chest = (l) => {
+			const rand = random(l);
+			return () => Treasure(Items[rand]());
+		};
+		
+		for(let i = 0; i < level.enemies.length; i++){
+			const { enemy, qty } = level.enemies[i];
+			this.createEntities(enemy, qty);
+		}
+		
+		this.createEntities(Dungeon, 1);
+		this.createEntities(Chest(level.maxItemLevel), random(level.maxTreasures));
+		
+		this.drawMap();
+	}
 }
 
 export default MapController;

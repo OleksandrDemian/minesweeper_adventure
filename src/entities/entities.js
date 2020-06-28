@@ -1,44 +1,51 @@
 import Entity from "./Entity";
 import Type from "./EntityType";
-import {Controllers, showBattle} from "../main";
-import Items from "../items/items";
+import {Controllers, nextLevel, showBattle} from "../main";
+
+function onEnemy (){
+	showBattle({ enemy: this });
+}
 
 export const Orc = () => new Entity({
 	img: "orc",
 	type: Type.ENEMY,
-	onOpen: function () {
-		showBattle();
-	},
-	onClick: function () {
-		alert("Orc is dead");
+	onOpen: onEnemy,
+	data: {
+		name: "Orc",
+		health: 7,
+		attack: 3,
+		defence: 1
+	}
+});
+
+export const Snake = () => new Entity({
+	img: "snake",
+	type: Type.ENEMY,
+	onOpen: onEnemy,
+	data: {
+		name: "Snake",
+		health: 5,
+		attack: 2,
+		defence: 0
 	}
 });
 
 export const Empty = () => new Entity({color: "white", type: Type.EMPTY});
 
-export const City = () => new Entity({
-	img: "city",
-	type: Type.NPO,
-	onClick: function () {
-		alert("Entering the city");
-	}
-});
-
 export const Dungeon = () => new Entity({
 	img: "dungeonEnter",
 	type: Type.NPO,
 	onClick: function () {
-		alert("Entering the dungeon");
+		nextLevel();
 	}
 });
 
-export const Treasure = () => new Entity({
+export const Treasure = (item) => new Entity({
 	img: "treasure",
 	type: Type.NPO,
 	onClick: function () {
 		if(this.enabled){
-			let rand = Math.floor(Math.random() * Items.length);
-			Controllers.inventory.addItem(Items[rand]());
+			Controllers.inventory.addItem(item);
 			this.enable(false);
 		}
 	}

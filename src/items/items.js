@@ -40,9 +40,9 @@ export const LeatherArmor = () => new Item({
 	value: 1
 });
 
-export default [
+export const Items = [
 	HealthPotion,
-	Dagger,
 	WoodenStick,
+	Dagger,
 	LeatherArmor
 ];
