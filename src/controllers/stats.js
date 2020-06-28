@@ -22,6 +22,7 @@ class StatsController extends Controller {
 		this.element.querySelector("[health]").innerText = this.stats.getHealth();
 		this.element.querySelector("[damage]").innerText = this.stats.getDamage();
 		this.element.querySelector("[armor]").innerText = this.stats.getArmor();
+		this.element.querySelector("[dexterity]").innerText = this.stats.getDexterity();
 	}
 }
 

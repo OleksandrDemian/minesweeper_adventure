@@ -37,7 +37,10 @@ export const LeatherArmor = () => new Item({
 	name: "Leather armor",
 	type: ItemType.ARMOR,
 	effect: useArmor,
-	value: 1
+	data: {
+		defence: 1,
+		dexterity: 0
+	}
 });
 
 export const Items = [

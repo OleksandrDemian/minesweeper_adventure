@@ -14,7 +14,8 @@ export const Orc = () => new Entity({
 		name: "Orc",
 		health: 7,
 		attack: 3,
-		defence: 1
+		defence: 1,
+		dexterity: 2
 	}
 });
 
@@ -26,7 +27,8 @@ export const Snake = () => new Entity({
 		name: "Snake",
 		health: 5,
 		attack: 2,
-		defence: 0
+		defence: 0,
+		dexterity: 3
 	}
 });
 

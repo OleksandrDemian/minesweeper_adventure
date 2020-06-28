@@ -1,9 +1,12 @@
+import {random} from "../utils/utils";
+
 class Stats {
-	constructor({ name, health = 0, damage = 0, defence = 0 }) {
+	constructor({ name, health = 0, damage = 0, defence = 0, dexterity = 0 }) {
 		this.name = name;
 		this.damage = damage;
 		this.health = health;
 		this.defence = defence;
+		this.dexterity = dexterity;
 		
 		this.weapon = null;
 		this.armor = null;
@@ -51,19 +54,32 @@ class Stats {
 	getArmor(){
 		let a = this.defence;
 		if(this.armor != null){
-			a += this.armor.value;
+			a += this.armor.data.defence;
 		}
 		
 		return a;
 	}
 	
-	hit(amount = 1){
-		amount -= this.getArmor();
-		if(amount > 0){
-			this.health -= amount;
+	getDexterity(){
+		let d = this.dexterity;
+		if(this.armor != null){
+			d += this.armor.data.dexterity;
 		}
 		
-		this.onUpdate && this.onUpdate();
+		return d;
+	}
+	
+	hit(amount, dex){
+		const maxDex = this.getDexterity() + dex;
+		const rand = random(maxDex);
+		if(rand < dex){
+			amount -= this.getArmor();
+			if(amount > 0){
+				this.health -= amount;
+			}
+			
+			this.onUpdate && this.onUpdate();
+		}
 	}
 }
 

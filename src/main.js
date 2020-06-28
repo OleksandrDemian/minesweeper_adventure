@@ -16,7 +16,8 @@ const stats = new Stats({
 	name: "Player",
 	health: 5,
 	damage: 2,
-	defence: 1
+	defence: 1,
+	dexterity: 3
 });
 statsController.setStats(stats);
 
