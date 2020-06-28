@@ -1,15 +1,20 @@
 import {showMap} from "../main";
+import Controller from "./Controller";
 
-export const init = () => {
-	const parent = document.getElementById("battle");
+class BattleController extends Controller {
+
+	onInit() {
+		this.element.querySelector("#attack").addEventListener("click", () => {
+			alert("Attack");
+		});
+		this.element.querySelector("#heal").addEventListener("click", () => {
+			alert("Heal");
+		});
+		this.element.querySelector("#backToMap").addEventListener("click", () => {
+			showMap();
+		});
+	}
 	
-	parent.querySelector("#attack").addEventListener("click", () => {
-		alert("Attack");
-	});
-	parent.querySelector("#heal").addEventListener("click", () => {
-		alert("Heal");
-	});
-	parent.querySelector("#backToMap").addEventListener("click", () => {
-		showMap();
-	});
-};
+}
+
+export default BattleController;

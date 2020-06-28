@@ -1,170 +1,47 @@
 import Type from "../entities/EntityType";
-import {City, Dungeon, Empty, Orc} from "../entities/entities";
+import {Empty} from "../entities/entities";
 import ImageMap from "../utils/ImageMap";
+import Controller from "./Controller";
 
 const CELL_SIZE = 32;
 const FONT_SIZE = 20;
 const MAP_SIZE = 512;
 const CELLS = MAP_SIZE / CELL_SIZE;
 
-let MAP = null;
-let canvas = null;
-let context = null;
-let sprites = null;
+class MapController extends Controller {
 
-const checkCell = (iX, iY) => {
-	MAP[iX][iY].shown = true;
-	const enemies = countEnemies(iX, iY);
-	if(enemies > 0){
-		MAP[iX][iY].enemies = enemies;
-	} else {
-		checkEmptyCells(iX, iY);
-	}
-};
-
-const checkEmptyCells = (x, y) => {
-	for(let ix = x-1; ix <= x+1; ix ++){
-		for(let iy = y-1; iy <= y+1; iy ++){
-			if(ix !== x && iy !== y)
-				continue;
-			
-			if(ix < 0 || ix >= CELLS)
-				continue;
-			
-			if(iy < 0 || iy >= CELLS)
-				continue;
-			
-			if(!MAP[ix][iy].shown && MAP[ix][iy].type === Type.EMPTY) {
-				checkCell(ix, iy);
-			}
-		}
-	}
-};
-
-const drawRect = (x, y, color = "black") => {
-	context.fillStyle = color;
-	context.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
-	
-};
-
-const drawText = (x, y, text, color = "red") => {
-	context.font = FONT_SIZE + "px Arial";
-	context.textAlign = "center";
-	context.textBaseline = "middle";
-	context.fillStyle = color;
-	context.fillText(text, (x * CELL_SIZE) + (CELL_SIZE/2), (y * CELL_SIZE) + (CELL_SIZE/2));
-};
-
-const clearCanvas = () => {
-	context.fillStyle = "white";
-	context.fillRect(0, 0, MAP_SIZE, MAP_SIZE);
-};
-
-const updateCanvas = () => {
-	clearCanvas();
-	drawMap();
-};
-
-const drawMap = () => {
-	let ent = null;
-	for(let x = 0; x < CELLS; x++){
-		for(let y = 0; y < CELLS; y++){
-			ent = MAP[x][y];
-			
-			if(ent.shown){
-				if(ent.type === Type.EMPTY){
-					if((x + y) % 2 === 0){
-						drawRect(x, y, "white");
-					} else {
-						drawRect(x, y, "#faded9");
-					}
-				} else if(ent.img != null) {
-					sprites.draw(ent.img, x, y);
-				} else {
-					drawRect(x, y, ent.color);
-				}
-				
-				if(ent.enemies > 0 && ent.type !== Type.ENEMY){
-					drawText(x, y, ent.enemies, ent.type === Type.EMPTY ? "black" : "white");
-				}
-			} else {
-				if((x + y) % 2 === 0){
-					drawRect(x, y, "#364f6b");
-				} else {
-					drawRect(x, y, "#fc5185");
-				}
-			}
-		}
-	}
-};
-
-const createMap = () => {
-	MAP = [];
-	for(let x = 0; x < CELLS; x++){
-		let xArr = [];
-		for(let y = 0; y < CELLS; y++){
-			xArr[y] = Empty();
-		}
-		MAP[x] = xArr;
-	}
-};
-
-const countEnemies = (x, y) => {
-	let enemies = 0;
-	for(let ix = x-1; ix <= x+1; ix ++){
-		for(let iy = y-1; iy <= y+1; iy ++){
-			if(ix < 0 || ix >= CELLS)
-				continue;
-			
-			if(iy < 0 || iy >= CELLS)
-				continue;
-			
-			if(MAP[ix][iy].type === Type.ENEMY)
-				enemies++;
-		}
-	}
-	
-	return enemies;
-};
-
-const createEntities = (ent, amount) => {
-	let created = 0;
-	while (created < amount){
-		const x = Math.random() * CELLS;
-		const y = Math.random() * CELLS;
+	onInit(){
+		const canvas = this.element.querySelector("canvas");
+		this.context = canvas.getContext("2d");
 		
-		const iX = Math.floor(x);
-		const iY = Math.floor(y);
+		canvas.addEventListener("click", this.handleClick.bind(this));
 		
-		if(MAP[iX][iY].type === Type.EMPTY){
-			MAP[iX][iY] = ent();
-			created++;
-		}
+		this.map = null;
+		this.ready = false;
+		this.onReady = null;
+		
+		this.sprites = new ImageMap(this.context, "./public/tilemap.png", () => {
+			this.createMap();
+			this.ready = true;
+			this.onReady && this.onReady();
+		}, {
+			hero: { x: 4, y: 0 },
+			snake: { x: 4, y: 1 },
+			orc: { x: 11, y: 0 },
+			city: { x: 6, y: 7 },
+			dungeonEnter: { x: 4, y: 3 },
+			treasure: { x: 9, y: 3 }
+		});
 	}
-};
-
-export const init = () => {
-	canvas = document.getElementById("gameCanvas");
-	context = canvas.getContext("2d");
 	
-	sprites = new ImageMap(context, "./public/tilemap.png", () => {
-	
-	}, {
-		hero: { x: 4, y: 0 },
-		snake: { x: 4, y: 1 },
-		orc: { x: 11, y: 0 },
-		city: { x: 6, y: 7 },
-		dungeonEnter: { x: 4, y: 3 },
-	});
-	
-	canvas.addEventListener("click", (e) => {
+	handleClick(e){
 		const x = e.offsetX / CELL_SIZE;
 		const y = e.offsetY / CELL_SIZE;
 		
 		const iX = Math.floor(x);
 		const iY = Math.floor(y);
 		
-		const cell = MAP[iX][iY];
+		const cell = this.map[iX][iY];
 		
 		if(cell.shown){
 			if(cell.onClick != null){
@@ -175,17 +52,147 @@ export const init = () => {
 				cell.onOpen();
 			}
 			
-			checkCell(iX, iY);
+			this.checkCell(iX, iY);
 		}
 		
-		updateCanvas();
-	});
+		this.drawMap();
+	}
 	
-	createMap();
+	setOnReady(callback){
+		this.onReady = callback;
+		if(this.ready){
+			this.onReady();
+		}
+	}
 	
-	createEntities(Orc, 25);
-	createEntities(City, 8);
-	createEntities(Dungeon, 4);
+	createMap() {
+		this.map = [];
+		for(let x = 0; x < CELLS; x++){
+			let xArr = [];
+			for(let y = 0; y < CELLS; y++){
+				xArr[y] = Empty();
+			}
+			this.map[x] = xArr;
+		}
+	};
 	
-	drawMap();
-};
+	createEntities(ent, amount) {
+		let created = 0;
+		while (created < amount){
+			const x = Math.random() * CELLS;
+			const y = Math.random() * CELLS;
+			
+			const iX = Math.floor(x);
+			const iY = Math.floor(y);
+			
+			if(this.map[iX][iY].type === Type.EMPTY){
+				this.map[iX][iY] = ent();
+				created++;
+			}
+		}
+	};
+	
+	clearCanvas() {
+		this.context.fillStyle = "white";
+		this.context.fillRect(0, 0, MAP_SIZE, MAP_SIZE);
+	};
+	
+	checkCell (iX, iY) {
+		this.map[iX][iY].shown = true;
+		const enemies = this.countEnemies(iX, iY);
+		if(enemies > 0){
+			this.map[iX][iY].enemies = enemies;
+		} else {
+			this.checkEmptyCells(iX, iY);
+		}
+	};
+	
+	checkEmptyCells(x, y) {
+		for(let ix = x-1; ix <= x+1; ix ++){
+			for(let iy = y-1; iy <= y+1; iy ++){
+				if(ix !== x && iy !== y)
+					continue;
+				
+				if(ix < 0 || ix >= CELLS)
+					continue;
+				
+				if(iy < 0 || iy >= CELLS)
+					continue;
+				
+				const ent = this.map[ix][iy];
+				if(!ent.shown && (ent.type === Type.EMPTY || !ent.enabled)) {
+					this.checkCell(ix, iy);
+				}
+			}
+		}
+	};
+	
+	drawRect(x, y, color = "black") {
+		this.context.fillStyle = color;
+		this.context.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+	};
+	
+	drawText(x, y, text, color = "red") {
+		this.context.font = FONT_SIZE + "px Arial";
+		this.context.textAlign = "center";
+		this.context.textBaseline = "middle";
+		this.context.fillStyle = color;
+		this.context.fillText(text, (x * CELL_SIZE) + (CELL_SIZE/2), (y * CELL_SIZE) + (CELL_SIZE/2));
+	};
+	
+	drawMap() {
+		let ent = null;
+		this.clearCanvas();
+		
+		for(let x = 0; x < CELLS; x++){
+			for(let y = 0; y < CELLS; y++){
+				ent = this.map[x][y];
+				
+				if(ent.shown){
+					if(ent.type === Type.EMPTY || !ent.enabled){
+						if((x + y) % 2 === 0){
+							this.drawRect(x, y, "white");
+						} else {
+							this.drawRect(x, y, "#faded9");
+						}
+					} else if(ent.img != null) {
+						this.sprites.draw(ent.img, x, y);
+					} else {
+						this.drawRect(x, y, ent.color);
+					}
+					
+					if(ent.enemies > 0 && ent.type !== Type.ENEMY){
+						const color = ent.type === Type.EMPTY || !ent.enabled ? "black" : "white";
+						this.drawText(x, y, ent.enemies, color);
+					}
+				} else {
+					if((x + y) % 2 === 0){
+						this.drawRect(x, y, "#364f6b");
+					} else {
+						this.drawRect(x, y, "#fc5185");
+					}
+				}
+			}
+		}
+	};
+	
+	countEnemies(x, y) {
+		let enemies = 0;
+		for(let ix = x-1; ix <= x+1; ix ++){
+			for(let iy = y-1; iy <= y+1; iy ++){
+				if(ix < 0 || ix >= CELLS)
+					continue;
+				
+				if(iy < 0 || iy >= CELLS)
+					continue;
+				
+				if(this.map[ix][iy].type === Type.ENEMY)
+					enemies++;
+			}
+		}
+		
+		return enemies;
+	};
+}
+
+export default MapController;

@@ -1,3 +1,5 @@
+import Type from "./EntityType";
+
 class Entity {
 	constructor ({ color, type, onClick, onOpen, img }) {
 		this.color = color;
@@ -8,6 +10,7 @@ class Entity {
 		this.onClick = onClick;
 		this.onOpen = onOpen;
 		this.img = img;
+		this.enabled = true;
 	}
 	
 	click(){
@@ -16,6 +19,10 @@ class Entity {
 	
 	open(){
 		this.onOpen && this.onOpen();
+	}
+	
+	enable(action = true){
+		this.enabled = action;
 	}
 }
 
