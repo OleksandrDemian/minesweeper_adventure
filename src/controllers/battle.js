@@ -11,45 +11,68 @@ class EnemyBattleWrapper {
 		this.dexterity = enemy.data.dexterity;
 	}
 	
-	hit(damage, dex){
-		const maxDex = this.dexterity + dex;
-		const rand = random(maxDex);
-		
-		if(rand < dex){
-			damage -= this.defence;
-			if(damage > 0){
-				this.health -= damage;
-			}
+	hit(damage){
+		damage -= this.defence;
+		if(damage > 0){
+			this.health -= damage;
 		}
 	}
 }
+
+const rollDice = (dAttack, dDefence) => {
+	const maxDex = dAttack + dDefence;
+	const rand = random(maxDex);
+	
+	return {
+		pass: dAttack > rand,
+		critical: rand === 0
+	}
+};
 
 class BattleController extends Controller {
 
 	onInit() {
 		this.element.querySelector("#attack").addEventListener("click", () => {
-			this.enemy.hit(this.player.getDamage(), this.player.getDexterity());
-			this.updateUi();
-			
-			if(this.enemy.health < 1){
-				alert("You won");
-				showMap();
-			}
-			
-			this.player.hit(this.enemy.attack, this.enemy.dexterity);
-			
-			if(this.player.getHealth() < 1){
-				alert("You are dead");
-			}
+			this.tick(true);
 		});
 		
 		this.enemy = null;
 	}
 	
+	tick(attacking = false){
+		const pDx = this.player.getDexterity();
+		const eDx = this.enemy.dexterity;
+		
+		if(attacking === true){
+			const pAttack = rollDice(pDx, eDx);
+			if(pAttack.critical){
+				this.enemy.hit(this.player.getDamage() * 2);
+			} else if(pAttack.pass) {
+				this.enemy.hit(this.player.getDamage());
+			}
+			
+			this.updateUi();
+			
+			if(this.enemy.health < 1){
+				showMap();
+			}
+		}
+		
+		const eAttack = rollDice(eDx, pDx);
+		if(eAttack.critical){
+			this.player.hit(this.enemy.attack * 2);
+		} else if(eAttack.pass) {
+			this.player.hit(this.enemy.attack);
+		}
+		
+		if(this.player.getHealth() < 1){
+			alert("You are dead");
+		}
+	}
+	
 	onShow(info) {
 		this.enemy = new EnemyBattleWrapper(info.enemy);
 		this.player = Controllers.stats.getStats();
-		info.enemy.enable(false);
 		this.updateUi();
 	}
 	

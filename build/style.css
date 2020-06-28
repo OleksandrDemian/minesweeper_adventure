@@ -11,3 +11,8 @@
 .border {
     border: 2px solid #364f6b;
 }
+
+[items] > div {
+    border: 2px solid #364f6b;
+    padding: 5px;
+}

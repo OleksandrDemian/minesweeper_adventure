@@ -7,11 +7,11 @@ export const ItemType = {
 
 class Item {
 
-	constructor({ name, type, effect, value, monoUse = false }) {
+	constructor({ name, type, effect, data, monoUse = false }) {
 		this.name = name;
 		this.type = type;
 		this.effect = effect;
-		this.value = value;
+		this.data = data;
 		this.monoUse = monoUse;
 	}
 	

@@ -33,7 +33,8 @@ class MapController extends Controller {
 			orc: { x: 11, y: 0 },
 			city: { x: 6, y: 7 },
 			dungeonEnter: { x: 4, y: 3 },
-			treasure: { x: 9, y: 3 }
+			treasure: { x: 9, y: 3 },
+			deadEnemy: { x: 8, y: 7 },
 		});
 	}
 	
@@ -202,7 +203,7 @@ class MapController extends Controller {
 		this.createMap();
 		
 		const Chest = (l) => {
-			const rand = random(l);
+			const rand = random(1, l);
 			return () => Treasure(Items[rand]());
 		};
 		

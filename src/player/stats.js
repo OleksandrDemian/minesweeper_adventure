@@ -45,7 +45,7 @@ class Stats {
 	getDamage(){
 		let d = this.damage;
 		if(this.weapon != null){
-			d += this.weapon.value;
+			d += this.weapon.data.damage;
 		}
 		
 		return d;
@@ -63,23 +63,23 @@ class Stats {
 	getDexterity(){
 		let d = this.dexterity;
 		if(this.armor != null){
-			d += this.armor.data.dexterity;
+			d += (this.armor.data.dexterity || 0);
+		}
+		
+		if(this.weapon != null){
+			d += (this.weapon.data.dexterity || 0);
 		}
 		
 		return d;
 	}
 	
-	hit(amount, dex){
-		const maxDex = this.getDexterity() + dex;
-		const rand = random(maxDex);
-		if(rand < dex){
-			amount -= this.getArmor();
-			if(amount > 0){
-				this.health -= amount;
-			}
-			
-			this.onUpdate && this.onUpdate();
+	hit(amount){
+		amount -= this.getArmor();
+		if(amount > 0){
+			this.health -= amount;
 		}
+		
+		this.onUpdate && this.onUpdate();
 	}
 }
 
