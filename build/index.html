@@ -18,12 +18,6 @@
 		<button enter>Enter the Minegeon</button>
 	</div>
 	
-	<div class="border" controller="inventory">
-		<h3 class="text-center">Inventory</h3>
-		<div items>
-		</div>
-	</div>
-	
 	<div class="border" controller="stats">
 		<div id="character">
 			<h3 class="text-center"><span name>Player</span></h3>
@@ -32,10 +26,12 @@
 			<p>Armor: <span armor>--</span></p>
 			<p>Dexterity: <span dexterity>--</span></p>
 		</div>
+		<div items>
+		</div>
 	</div>
 	
-	<div class="border" id="map" controller="map">
-		<canvas id="gameCanvas" width="512px" height="512px"></canvas>
+	<div id="map" controller="map">
+		<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>
 	</div>
 	
 	<div class="border" id="battle" controller="battle">

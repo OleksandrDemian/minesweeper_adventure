@@ -86,7 +86,7 @@ export const Treasure = (item) => new Entity({
 	type: Type.NPO,
 	onClick: function () {
 		if(this.enabled){
-			Controllers.inventory.addItem(item);
+			Controllers.stats.addItem(item);
 			this.enable(false);
 		}
 	}

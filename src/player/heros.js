@@ -1,9 +1,14 @@
+import {Dagger, WoodenStick} from "../items/items";
+
 export const Rogue = () => ({
 	name: "Rogue",
 	health: 5,
 	damage: 2,
 	defence: 1,
-	dexterity: 9
+	dexterity: 9,
+	startItems: [
+		WoodenStick()
+	]
 });
 
 export const Warrior = () => ({
@@ -19,5 +24,8 @@ export const Thief = () => ({
 	health: 4,
 	damage: 2,
 	defence: 0,
-	dexterity: 11
+	dexterity: 11,
+	startItems: [
+		Dagger()
+	]
 });

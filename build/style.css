@@ -9,7 +9,6 @@ body {
 
 #gameContainer {
     display: flex;
-    justify-content: center;
 }
 
 #gameContainer > div {
@@ -22,8 +21,35 @@ body {
     border: 2px solid #364f6b;
 }
 
+[controller='stats'] {
+    position: relative;
+    overflow-y: auto;
+    max-height: 90vh;
+    width: 40vw;
+    top: 10px;
+    bottom: 10px;
+}
+
+[controller='map'] {
+    position: relative;
+    max-height: 90vh;
+    width: 40vw;
+    top: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+[items] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
 [items] > div {
     border: 2px solid #364f6b;
+    margin: 5px;
     padding: 5px;
 }
 
