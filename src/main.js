@@ -5,11 +5,13 @@ import Stats from "./player/stats";
 import {Levels} from "./levels/levels";
 import {Rogue, Thief, Warrior} from "./player/heros";
 import HeroController from "./controllers/hero";
+import InventoryController from "./controllers/inventory";
 
 const mapController = new MapController({ name: "map" });
 const battleController = new BattleController({ name: "battle" });
 const statsController = new StatsController({ name: "stats" });
 const heroController = new HeroController({ name: "hero" });
+const inventoryController = new InventoryController({ name: "inventory" });
 
 let CUR_LEVEL = 0;
 
@@ -60,7 +62,8 @@ export const showBattle = (info) => {
 export const Controllers = {
 	map: mapController,
 	battle: battleController,
-	stats: statsController
+	stats: statsController,
+	inventory: inventoryController
 };
 
 export const nextLevel = () => {
