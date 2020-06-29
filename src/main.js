@@ -73,11 +73,19 @@ export const nextLevel = () => {
 	mapController.buildLevel(level);
 };
 
-mapController.hide();
-battleController.hide();
-statsController.hide();
-inventoryController.hide();
+export const restart = () => {
+	CUR_LEVEL = 0;
+	mapController.hide();
+	battleController.hide();
+	statsController.hide();
+	inventoryController.hide();
+	inventoryController.clear();
+	
+	heroController.show();
+};
 
 heroController.onStart(({ hero }) => {
 	startGame({ hero })
 });
+
+restart();

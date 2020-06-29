@@ -59,6 +59,10 @@ class InventoryController extends Controller {
 			itemsContainerUi.appendChild(createItemElement(this.items[i]));
 		}
 	}
+	
+	clear(){
+		this.items = [];
+	}
 }
 
 export default InventoryController;

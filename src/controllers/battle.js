@@ -1,4 +1,4 @@
-import {Controllers, showMap} from "../main";
+import {Controllers, restart, showMap} from "../main";
 import Controller from "./Controller";
 import {random} from "../utils/utils";
 
@@ -74,6 +74,7 @@ class BattleController extends Controller {
 		
 		if(this.player.getHealth() < 1){
 			alert("You are dead");
+			restart();
 		}
 	}
 	
