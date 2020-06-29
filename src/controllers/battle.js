@@ -40,18 +40,25 @@ class BattleController extends Controller {
 	}
 	
 	tick(attacking = false){
+		this.animateAttack();
+		
 		const pDx = this.player.getDexterity();
 		const eDx = this.enemy.dexterity;
 		
 		if(attacking === true){
 			const pAttack = rollDice(pDx, eDx);
+			let damage = 0;
 			if(pAttack.critical){
-				this.enemy.hit(this.player.getDamage() * 2);
+				damage = this.player.getDamage() * 2;
 			} else if(pAttack.pass) {
-				this.enemy.hit(this.player.getDamage());
+				damage = this.player.getDamage()
 			}
 			
-			this.updateUi();
+			if(damage > 0){
+				this.enemy.hit(damage);
+				this.updateUi();
+				this.animate("health");
+			}
 			
 			if(this.enemy.health < 1){
 				showMap();
@@ -82,6 +89,22 @@ class BattleController extends Controller {
 		this.element.querySelector("[damage]").innerText = this.enemy.attack;
 		this.element.querySelector("[defence]").innerText = this.enemy.defence;
 		this.element.querySelector("[dexterity]").innerText = this.enemy.dexterity;
+	}
+	
+	animate(stat, type){
+		const classList = this.element.querySelector("[" + stat + "]").classList;
+		classList.add("animateNegative");
+		setTimeout(() => {
+			classList.remove("animateNegative");
+		}, 250);
+	}
+	
+	animateAttack(){
+		const classList = this.element.querySelector("#attack").classList;
+		classList.add("animateAttack");
+		setTimeout(() => {
+			classList.remove("animateAttack");
+		}, 100);
 	}
 }
 

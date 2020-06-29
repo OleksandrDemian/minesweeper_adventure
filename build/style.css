@@ -20,16 +20,17 @@ body {
     min-width: 200px;
 }
 
-#character {
+.character {
     display: flex;
     justify-content: space-around;
+    text-align: center;
 }
 
 .border {
     border: 2px solid #364f6b;
 }
 
-[controller='stats'] {
+[controller='stats'], [controller='battle'] {
     position: relative;
     width: 512px;
 }
@@ -62,4 +63,33 @@ body {
 
 .text-center {
     text-align: center;
+}
+
+.animateNegative {
+    color: red;
+    transform: scale(2, 2);
+}
+
+.animateAttack {
+    color: white;
+    background-color: red;
+    border-color: transparent;
+    transform: scale(1.2, 1.2);
+}
+
+#attack {
+    user-select: none;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100px;
+    height: 100px;
+
+    cursor: pointer;
 }

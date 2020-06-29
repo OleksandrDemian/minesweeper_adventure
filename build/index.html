@@ -24,13 +24,25 @@
 		</div>
 	</div>
 	
-	<div class="border" controller="stats">
-		<div id="character">
-			<h3 class="text-center" style="display: none"><span name>Player</span></h3>
-			<span>Health: <span health>--</span></span>
-			<span>Damage: <span damage>--</span></span>
-			<span>Armor: <span armor>--</span></span>
-			<span>Dexterity: <span dexterity>--</span></span>
+	<div controller="stats">
+		<div class="character border">
+			<h3 name>Player</h3>
+			<div>
+				<span>Health</span>
+				<p health>--</p>
+			</div>
+			<div>
+				<span>Damage</span>
+				<p damage>--</p>
+			</div>
+			<div>
+				<span>Armor</span>
+				<p armor>--</p>
+			</div>
+			<div>
+				<span>Dexterity</span>
+				<p dexterity>--</p>
+			</div>
 		</div>
 	</div>
 	
@@ -38,15 +50,30 @@
 		<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>
 	</div>
 	
-	<div class="border" id="battle" controller="battle">
-		<h3><span name>--</span></h3>
-		<p>Health: <span health>--</span></p>
-		<p>Damage: <span damage>--</span></p>
-		<p>Armor: <span defence>--</span></p>
-		<p>Dexterity: <span dexterity>--</span></p>
+	<div id="battle" controller="battle">
+		<div id="attack" class="border">
+			<div>Attack</div>
+		</div>
 		
-		<hr />
-		<button id="attack">Attack</button>
+		<div class="character border">
+			<h3 name>Player</h3>
+			<div>
+				<span>Health</span>
+				<p health>--</p>
+			</div>
+			<div>
+				<span>Damage</span>
+				<p damage>--</p>
+			</div>
+			<div>
+				<span>Armor</span>
+				<p defence>--</p>
+			</div>
+			<div>
+				<span>Dexterity</span>
+				<p dexterity>--</p>
+			</div>
+		</div>
 	</div>
 </div>
 

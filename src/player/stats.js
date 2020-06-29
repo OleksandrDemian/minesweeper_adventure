@@ -18,12 +18,14 @@ class Stats {
 	
 	setWeapon(item){
 		this.weapon = item;
-		this.onUpdate && this.onUpdate();
+		this.onUpdate && this.onUpdate("update");
+		return this;
 	}
 	
 	setArmor(item){
 		this.armor = item;
-		this.onUpdate && this.onUpdate();
+		this.onUpdate && this.onUpdate("update");
+		return this;
 	}
 	
 	heal(amount = 1){
@@ -32,7 +34,7 @@ class Stats {
 			this.health = this.def.health;
 		}
 		
-		this.onUpdate && this.onUpdate();
+		this.onUpdate && this.onUpdate("update");
 		return this;
 	}
 	
@@ -77,7 +79,7 @@ class Stats {
 			this.health -= amount;
 		}
 		
-		this.onUpdate && this.onUpdate();
+		this.onUpdate && this.onUpdate("hit");
 	}
 }
 

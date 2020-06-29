@@ -44,6 +44,7 @@ export const startGame = ({ hero }) => {
 	}
 	
 	statsController.show();
+	inventoryController.show();
 	heroController.hide();
 	
 	showMap();
@@ -75,6 +76,7 @@ export const nextLevel = () => {
 mapController.hide();
 battleController.hide();
 statsController.hide();
+inventoryController.hide();
 
 heroController.onStart(({ hero }) => {
 	startGame({ hero })

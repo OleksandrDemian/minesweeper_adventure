@@ -8,8 +8,13 @@ class StatsController extends Controller {
 	
 	setStats(stats){
 		this.stats = stats;
-		this.stats.onUpdate = () => {
-			this.updateUi();
+		this.stats.onUpdate = (type) => {
+			if(type === "update"){
+				this.updateUi();
+			} else if(type === "hit"){
+				this.updateUi();
+				this.animate("health");
+			}
 		};
 		
 		this.updateUi();
@@ -29,6 +34,14 @@ class StatsController extends Controller {
 	
 	addItem(item){
 		Controllers.inventory.addItem(item);
+	}
+	
+	animate(stat, type){
+		const classList = this.element.querySelector("[" + stat + "]").classList;
+		classList.add("animateNegative");
+		setTimeout(() => {
+			classList.remove("animateNegative");
+		}, 250);
 	}
 }
 

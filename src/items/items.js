@@ -3,6 +3,7 @@ import Item, {ItemType} from "./item";
 function useWeapon(stats){
 	stats.setWeapon(this);
 }
+
 function useArmor(stats){
 	stats.setArmor(this);
 }
