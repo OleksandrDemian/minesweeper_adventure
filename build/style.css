@@ -70,6 +70,11 @@ body {
     transform: scale(2, 2);
 }
 
+.animatePositive {
+    color: green;
+    transform: scale(2, 2);
+}
+
 .animateAttack {
     color: white;
     background-color: red;

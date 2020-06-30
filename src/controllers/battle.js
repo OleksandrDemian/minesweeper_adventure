@@ -57,7 +57,7 @@ class BattleController extends Controller {
 			if(damage > 0){
 				this.enemy.hit(damage);
 				this.updateUi();
-				this.animate("health");
+				this.animate("health", "animateNegative");
 			}
 			
 			if(this.enemy.health < 1){
@@ -94,9 +94,9 @@ class BattleController extends Controller {
 	
 	animate(stat, type){
 		const classList = this.element.querySelector("[" + stat + "]").classList;
-		classList.add("animateNegative");
+		classList.add(type);
 		setTimeout(() => {
-			classList.remove("animateNegative");
+			classList.remove(type);
 		}, 250);
 	}
 	

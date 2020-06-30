@@ -17,14 +17,45 @@ class Stats {
 	}
 	
 	setWeapon(item){
+		const oldDamage = this.getDamage();
+		const oldDex = this.getDexterity();
+		
 		this.weapon = item;
-		this.onUpdate && this.onUpdate("update");
+		this.onUpdate && this.onUpdate();
+		
+		if(oldDamage < this.getDamage()){
+			this.animate && this.animate("damage", "animatePositive");
+		} else if(oldDamage > this.getDamage()){
+			this.animate && this.animate("damage", "animateNegative");
+		}
+		
+		if(oldDex < this.getDexterity()){
+			this.animate && this.animate("dexterity", "animatePositive");
+		} else if(oldDex > this.getDexterity()){
+			this.animate && this.animate("dexterity", "animateNegative");
+		}
+		
 		return this;
 	}
 	
 	setArmor(item){
+		const oldArmor = this.getArmor();
+		const oldDex = this.getDexterity();
+		
 		this.armor = item;
-		this.onUpdate && this.onUpdate("update");
+		this.onUpdate && this.onUpdate();
+		
+		if(oldArmor < this.getArmor()){
+			this.animate && this.animate("armor", "animatePositive");
+		} else if(oldArmor > this.getArmor()){
+			this.animate && this.animate("armor", "animateNegative");
+		}
+		
+		if(oldDex < this.getDexterity()){
+			this.animate && this.animate("dexterity", "animatePositive");
+		} else if(oldDex > this.getDexterity()){
+			this.animate && this.animate("dexterity", "animateNegative");
+		}
 		return this;
 	}
 	
@@ -32,9 +63,11 @@ class Stats {
 		this.health += amount;
 		if(this.health > this.def.health){
 			this.health = this.def.health;
+		} else {
+			this.animate && this.animate("health", "animatePositive");
 		}
 		
-		this.onUpdate && this.onUpdate("update");
+		this.onUpdate && this.onUpdate();
 		return this;
 	}
 	
@@ -79,7 +112,7 @@ class Stats {
 			this.health -= amount;
 		}
 		
-		this.onUpdate && this.onUpdate("hit");
+		this.onUpdate && this.onUpdate();
 	}
 }
 
