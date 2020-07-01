@@ -5,19 +5,21 @@
 
 body {
     font-family: text;
+    padding: 0px;
+    margin: 0px;
 }
 
 #gameContainer {
+    position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    flex-wrap: wrap;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 
-#gameContainer > div {
-    margin: 5px;
-    padding: 5px;
-    min-width: 200px;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .character {
@@ -30,27 +32,51 @@ body {
     border: 2px solid #364f6b;
 }
 
-[controller='stats'], [controller='battle'] {
+[controller='stats'] {
+    padding: 10px;
+}
+
+#head {
+    width: 100vw;
+    max-width: 100vw;
+    height: 10vh;
+    border-bottom: 1px solid black;
+}
+
+#leftContainer , #rightContainer {
+    width: 49vw;
+    height: 80vh;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+[controller='battle'] {
     position: relative;
     width: 512px;
 }
 
 [controller='map'] {
-    position: relative;
+
 }
 
 [controller='inventory'] {
-    position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 25vw;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
     overflow-y: auto;
 }
 
 [items] {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 [items] > div {
@@ -87,7 +113,7 @@ body {
 
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-top: 20px;
 
     display: flex;
     justify-content: center;
