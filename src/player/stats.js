@@ -112,7 +112,7 @@ class Stats {
 			this.health -= amount;
 		}
 		
-		this.onUpdate && this.onUpdate();
+		this.animate && this.animate("health", "animateNegative");
 	}
 }
 
