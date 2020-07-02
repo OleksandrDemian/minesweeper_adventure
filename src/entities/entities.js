@@ -86,8 +86,12 @@ export const Treasure = (item) => new Entity({
 	type: Type.NPO,
 	onClick: function () {
 		if(this.enabled){
-			Controllers.stats.addItem(item);
-			this.enable(false);
+			const added = Controllers.stats.addItem(item);
+			if(added){
+				this.enable(false);
+			} else {
+				alert("Your inventory is full");
+			}
 		}
 	}
 });

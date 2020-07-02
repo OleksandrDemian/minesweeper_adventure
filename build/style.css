@@ -30,6 +30,7 @@ body {
 
 .border {
     border: 2px solid #364f6b;
+    border-radius: 10px;
 }
 
 [controller='stats'] {
@@ -43,7 +44,7 @@ body {
     border-bottom: 2px solid #364f6b;
 }
 
-#leftContainer , #rightContainer {
+#rightContainer {
     width: 48vw;
     height: 80vh;
 
@@ -79,7 +80,6 @@ body {
 }
 
 [items] > div {
-    border: 2px solid #364f6b;
     margin: 5px;
     padding: 5px;
     display: flex;
@@ -122,4 +122,38 @@ body {
     height: 100px;
 
     cursor: pointer;
+}
+
+.popUpContainer {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 900;
+}
+
+.popUpContainer.transparent {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 900;
+}
+
+.popUpContent {
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    padding: 15px;
+    max-height: 50vh;
 }

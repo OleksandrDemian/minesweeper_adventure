@@ -1,9 +1,13 @@
 import Controller from "./Controller";
-import {Controllers} from "../main";
+import {Controllers, showInventory} from "../main";
 
 class StatsController extends Controller {
 	onInit() {
 		this.stats = null;
+		
+		this.element.querySelector("#showInventory").addEventListener("click", () => {
+			showInventory();
+		});
 	}
 	
 	setStats(stats){
@@ -30,7 +34,7 @@ class StatsController extends Controller {
 	}
 	
 	addItem(item){
-		Controllers.inventory.addItem(item);
+		return Controllers.inventory.addItem(item);
 	}
 	
 	animate(stat, type){

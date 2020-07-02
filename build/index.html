@@ -10,7 +10,10 @@
 <div id="head">
 	<div controller="stats">
 		<div class="character">
-			<h3 name>Player</h3>
+			<div>
+				<span name>Player</span>
+				<p><button id="showInventory">Inventory</button></p>
+			</div>
 			<div>
 				<span>Health</span>
 				<p health>--</p>
@@ -31,25 +34,27 @@
 	</div>
 </div>
 
-<div class="border" controller="hero">
-	<h3>Select your hero:</h3>
-	<select id="heroSelect">
-		<option value="rogue">Rogue</option>
-		<option value="warrior">Warrior</option>
-		<option value="thief">Thief</option>
-	</select>
-	<button enter>Enter the Minegeon</button>
+<div class="popUpContainer transparent" controller="inventory">
+	<div id="inventory" class="border popUpContent">
+		<h3>Inventory <button id="closeInventory">Close</button></h3>
+		<div items>
+		</div>
+	</div>
+</div>
+
+<div class="popUpContainer" controller="hero">
+	<div class="popUpContent border">
+		<h3>Select your hero:</h3>
+		<select id="heroSelect">
+			<option value="rogue">Rogue</option>
+			<option value="warrior">Warrior</option>
+			<option value="thief">Thief</option>
+		</select>
+		<button enter>Enter the Minegeon</button>
+	</div>
 </div>
 
 <div id="gameContainer">
-	<div id="leftContainer">
-		<div id="inventory" class="border" controller="inventory">
-			<h3>Inventory</h3>
-			<div items>
-			</div>
-		</div>
-	</div>
-	
 	<div id="rightContainer">
 		<div id="map" controller="map">
 			<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>

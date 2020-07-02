@@ -44,7 +44,7 @@ export const startGame = ({ hero }) => {
 	}
 	
 	statsController.show();
-	inventoryController.show();
+	hideInventory();
 	heroController.hide();
 	
 	showMap();
@@ -58,6 +58,14 @@ export const showMap = (info) => {
 export const showBattle = (info) => {
 	mapController.hide();
 	battleController.show(info);
+};
+
+export const showInventory = (info) => {
+	inventoryController.show(info);
+};
+
+export const hideInventory = (info) => {
+	inventoryController.hide(info);
 };
 
 export const Controllers = {

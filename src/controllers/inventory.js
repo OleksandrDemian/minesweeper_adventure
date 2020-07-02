@@ -1,5 +1,7 @@
 import Controller from "./Controller";
-import {Controllers} from "../main";
+import {Controllers, hideInventory} from "../main";
+
+const MAX_ITEMS = 8;
 
 const createItemElement = item => {
 	const itemUi = document.createElement("div");
@@ -22,6 +24,7 @@ const createItemElement = item => {
 		Controllers.inventory.dropItem(item);
 	});
 	
+	itemUi.classList.add("border");
 	itemUi.appendChild(name);
 	itemUi.appendChild(use);
 	itemUi.appendChild(drop);
@@ -33,11 +36,20 @@ class InventoryController extends Controller {
 	
 	onInit() {
 		this.items = [];
+		
+		this.element.querySelector("#closeInventory").addEventListener("click", () => {
+			hideInventory();
+		});
 	}
 	
 	addItem(item){
-		this.items.push(item);
-		this.renderInventory();
+		if(this.items.length >= MAX_ITEMS){
+			return false;
+		} else {
+			this.items.push(item);
+			this.renderInventory();
+			return true;
+		}
 	}
 	
 	dropItem(item){
