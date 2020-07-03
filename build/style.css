@@ -40,6 +40,7 @@ body {
     width: 512px;
 
     margin: 10px 0px;
+    z-index: 950;
 }
 
 #rightContainer {
@@ -100,13 +101,14 @@ body {
 }
 
 .animateAttack {
-    color: white;
-    background-color: red;
+    color: white !important;
+    background-color: red !important;
     border-color: transparent;
     transform: scale(1.2, 1.2);
 }
 
 #attack {
+    background-color: white;
     user-select: none;
 
     margin-left: auto;
