@@ -2,7 +2,6 @@ import Type from "../entities/EntityType";
 import {Dungeon, Empty, Treasure} from "../entities/entities";
 import ImageMap from "../utils/ImageMap";
 import Controller from "./Controller";
-import {Levels} from "../levels/levels";
 import {random} from "../utils/utils";
 import {Items} from "../items/items";
 
@@ -10,6 +9,15 @@ const CELL_SIZE = 32;
 const FONT_SIZE = 20;
 const MAP_SIZE = 512;
 const CELLS = MAP_SIZE / CELL_SIZE;
+
+const TOP_GRID = {
+	a: "#303a52",
+	b: "#574b90"
+};
+const BOTTOM_GRID = {
+	a: "rgba(48,58,82,0.21)",
+	b: "rgba(87,75,144,0.2)"
+};
 
 class MapController extends Controller {
 
@@ -155,9 +163,9 @@ class MapController extends Controller {
 				if(ent.shown){
 					if(ent.type === Type.EMPTY || !ent.enabled){
 						if((x + y) % 2 === 0){
-							this.drawRect(x, y, "white");
+							this.drawRect(x, y, BOTTOM_GRID.a);
 						} else {
-							this.drawRect(x, y, "#faded9");
+							this.drawRect(x, y, BOTTOM_GRID.b);
 						}
 					} else if(ent.img != null) {
 						this.sprites.draw(ent.img, x, y);
@@ -171,9 +179,9 @@ class MapController extends Controller {
 					}
 				} else {
 					if((x + y) % 2 === 0){
-						this.drawRect(x, y, "#364f6b");
+						this.drawRect(x, y, TOP_GRID.a);
 					} else {
-						this.drawRect(x, y, "#fc5185");
+						this.drawRect(x, y, TOP_GRID.b);
 					}
 				}
 			}

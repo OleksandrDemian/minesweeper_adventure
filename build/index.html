@@ -7,33 +7,6 @@
 </head>
 <body>
 
-<div id="head">
-	<div controller="stats">
-		<div class="character">
-			<div>
-				<span name>Player</span>
-				<p><button id="showInventory">Inventory</button></p>
-			</div>
-			<div>
-				<span>Health</span>
-				<p health>--</p>
-			</div>
-			<div>
-				<span>Damage</span>
-				<p damage>--</p>
-			</div>
-			<div>
-				<span>Armor</span>
-				<p armor>--</p>
-			</div>
-			<div>
-				<span>Dexterity</span>
-				<p dexterity>--</p>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div class="popUpContainer transparent" controller="inventory">
 	<div id="inventory" class="border popUpContent">
 		<h3>Inventory <button id="closeInventory">Close</button></h3>
@@ -56,6 +29,31 @@
 
 <div id="gameContainer">
 	<div id="rightContainer">
+		<div controller="stats">
+			<div class="character border">
+				<div>
+					<span name>Player</span>
+					<p><button id="showInventory">Inventory</button></p>
+				</div>
+				<div>
+					<span>Health</span>
+					<p health>--</p>
+				</div>
+				<div>
+					<span>Damage</span>
+					<p damage>--</p>
+				</div>
+				<div>
+					<span>Armor</span>
+					<p armor>--</p>
+				</div>
+				<div>
+					<span>Dexterity</span>
+					<p dexterity>--</p>
+				</div>
+			</div>
+		</div>
+		
 		<div id="map" controller="map">
 			<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>
 		</div>
