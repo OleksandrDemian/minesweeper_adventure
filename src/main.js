@@ -94,6 +94,7 @@ export const restart = () => {
 	mapController.hide();
 	battleController.hide();
 	statsController.hide();
+	statsController.showInventoryButton();
 	inventoryController.hide();
 	inventoryController.clear();
 	

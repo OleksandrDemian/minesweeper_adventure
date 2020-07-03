@@ -104,6 +104,7 @@ class BattleController extends Controller {
 		
 		if(this.player.getHealth() < 1){
 			Controllers.battleLog.append(this.player.name + " is dead", "negative-text");
+			Controllers.stats.hideInventoryButton();
 			this.showResurrect();
 		}
 	}

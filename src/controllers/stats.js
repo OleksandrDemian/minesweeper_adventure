@@ -4,8 +4,8 @@ import {Controllers, showInventory} from "../main";
 class StatsController extends Controller {
 	onInit() {
 		this.stats = null;
-		
-		this.element.querySelector("#showInventory").addEventListener("click", () => {
+		this.inventoryButton = this.element.querySelector("#showInventory");
+		this.inventoryButton.addEventListener("click", () => {
 			showInventory();
 		});
 	}
@@ -43,6 +43,14 @@ class StatsController extends Controller {
 		setTimeout(() => {
 			classList.remove(type);
 		}, 250);
+	}
+	
+	showInventoryButton(){
+		this.inventoryButton.style.display = "block";
+	}
+	
+	hideInventoryButton(){
+		this.inventoryButton.style.display = "none";
 	}
 }
 

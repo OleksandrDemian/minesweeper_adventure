@@ -168,3 +168,12 @@ body {
 .negative-text {
     color: red;
 }
+
+select, button {
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #303a52;
+    color: white;
+    margin: 2px;
+}

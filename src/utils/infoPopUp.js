@@ -1,3 +1,5 @@
+import {Controllers} from "../main";
+
 let element = null;
 
 const init = () => {
@@ -11,6 +13,7 @@ const init = () => {
 };
 
 const close = () => {
+	Controllers.stats.showInventoryButton();
 	element.style.display = "none";
 };
 
@@ -19,6 +22,7 @@ const show = (title, message) => {
 	element.querySelector("[info]").innerText = message;
 	
 	element.style.display = "flex";
+	Controllers.stats.hideInventoryButton();
 };
 
 const InfoPopUp = {

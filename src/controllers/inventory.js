@@ -79,6 +79,7 @@ class InventoryController extends Controller {
 	
 	clear(){
 		this.items = [];
+		this.renderInventory();
 	}
 }
 
