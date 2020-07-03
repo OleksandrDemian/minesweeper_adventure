@@ -1,5 +1,6 @@
 import Controller from "./Controller";
 import {Controllers, hideInventory} from "../main";
+import InfoPopUp from "../utils/infoPopUp";
 
 const MAX_ITEMS = 8;
 

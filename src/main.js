@@ -6,6 +6,7 @@ import {Levels} from "./levels/levels";
 import {Rogue, Thief, Warrior} from "./player/heros";
 import HeroController from "./controllers/hero";
 import InventoryController from "./controllers/inventory";
+import InfoPopUp from "./utils/infoPopUp";
 
 const mapController = new MapController({ name: "map" });
 const battleController = new BattleController({ name: "battle" });
@@ -96,4 +97,5 @@ heroController.onStart(({ hero }) => {
 	startGame({ hero })
 });
 
+InfoPopUp.init();
 restart();

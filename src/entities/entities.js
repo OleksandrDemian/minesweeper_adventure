@@ -1,6 +1,7 @@
 import Entity from "./Entity";
 import Type from "./EntityType";
 import {Controllers, nextLevel, showBattle} from "../main";
+import InfoPopUp from "../utils/infoPopUp";
 
 function onEnemy (){
 	showBattle({ enemy: this });
@@ -88,6 +89,7 @@ export const Treasure = (item) => new Entity({
 		if(this.enabled){
 			const added = Controllers.stats.addItem(item);
 			if(added){
+				InfoPopUp.show("Loot", item.name);
 				this.enable(false);
 			} else {
 				alert("Your inventory is full");

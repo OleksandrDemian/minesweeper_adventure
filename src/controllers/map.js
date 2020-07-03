@@ -15,8 +15,8 @@ const TOP_GRID = {
 	b: "#574b90"
 };
 const BOTTOM_GRID = {
-	a: "rgba(48,58,82,0.21)",
-	b: "rgba(87,75,144,0.2)"
+	a: "white",
+	b: "papayawhip"
 };
 
 class MapController extends Controller {

@@ -7,6 +7,7 @@ body {
     font-family: text;
     padding: 0;
     margin: 0;
+    background-color: papayawhip;
 }
 
 #gameContainer {
@@ -26,10 +27,11 @@ body {
     display: flex;
     justify-content: space-around;
     text-align: center;
+    background-color: white;
 }
 
 .border {
-    border: 2px solid #364f6b;
+    border: 2px solid #303a52;
     border-radius: 10px;
 }
 
@@ -135,13 +137,24 @@ body {
 }
 
 .popUpContainer.transparent {
-    background-color: rgba(48, 58, 82, 0.31);
+    background-color: rgba(48, 58, 82, 0.9);
 }
 
 .popUpContent {
     width: fit-content;
     height: fit-content;
+    min-width: 250px;
     background-color: white;
     padding: 15px;
     max-height: 50vh;
+}
+
+#infoPopUp {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    overflow-y: auto;
 }
