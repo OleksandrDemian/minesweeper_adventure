@@ -16,6 +16,8 @@ class EnemyBattleWrapper {
 		if(damage > 0){
 			this.health -= damage;
 		}
+		
+		return damage;
 	}
 }
 
@@ -32,8 +34,20 @@ const rollDice = (dAttack, dDefence) => {
 class BattleController extends Controller {
 
 	onInit() {
-		this.element.querySelector("#attack").addEventListener("click", () => {
+		this.attackButton = this.element.querySelector("[attack]");
+		this.resurrectButton = this.element.querySelector("[resurrect]");
+		this.continueButton = this.element.querySelector("[continue]");
+		
+		this.attackButton.addEventListener("click", () => {
 			this.tick(true);
+		});
+		
+		this.resurrectButton.addEventListener("click", () => {
+			restart();
+		});
+		
+		this.continueButton.addEventListener("click", () => {
+			showMap();
 		});
 		
 		this.enemy = null;
@@ -41,6 +55,7 @@ class BattleController extends Controller {
 	
 	tick(attacking = false){
 		this.animateAttack();
+		Controllers.battleLog.clear();
 		
 		const pDx = this.player.getDexterity();
 		const eDx = this.enemy.dexterity;
@@ -54,33 +69,53 @@ class BattleController extends Controller {
 				damage = this.player.getDamage()
 			}
 			
+			damage = this.enemy.hit(damage);
+			
 			if(damage > 0){
-				this.enemy.hit(damage);
 				this.updateUi();
 				this.animate("health", "animateNegative");
+				Controllers.battleLog.append(this.enemy.name + " gets " + damage + " damage", "positive-text");
+			} else {
+				Controllers.battleLog.append(this.player.name + " miss " + this.enemy.name, "negative-text");
 			}
 			
 			if(this.enemy.health < 1){
-				showMap();
+				Controllers.battleLog.append(this.enemy.name + " is dead", "positive-text");
+				this.showContinue();
+				return;
 			}
 		}
 		
 		const eAttack = rollDice(eDx, pDx);
+		let damage = 0;
+		
 		if(eAttack.critical){
-			this.player.hit(this.enemy.attack * 2);
+			damage = (this.enemy.attack * 2);
 		} else if(eAttack.pass) {
-			this.player.hit(this.enemy.attack);
+			damage = (this.enemy.attack);
+		}
+		
+		damage = this.player.hit(damage);
+		if(damage > 0){
+			Controllers.battleLog.append(this.player.name + " gets " + damage + " damage", "negative-text");
+		} else {
+			Controllers.battleLog.append(this.enemy.name + " miss " + this.player.name, "positive-text");
 		}
 		
 		if(this.player.getHealth() < 1){
-			alert("You are dead");
-			restart();
+			Controllers.battleLog.append(this.player.name + " is dead", "negative-text");
+			this.showResurrect();
 		}
 	}
 	
 	onShow(info) {
 		this.enemy = new EnemyBattleWrapper(info.enemy);
 		this.player = Controllers.stats.getStats();
+		
+		this.resurrectButton.style.display = "none";
+		this.continueButton.style.display = "none";
+		this.attackButton.style.display = "flex";
+		
 		this.updateUi();
 	}
 	
@@ -101,11 +136,21 @@ class BattleController extends Controller {
 	}
 	
 	animateAttack(){
-		const classList = this.element.querySelector("#attack").classList;
+		const classList = this.attackButton.classList;
 		classList.add("animateAttack");
 		setTimeout(() => {
 			classList.remove("animateAttack");
 		}, 100);
+	}
+	
+	showResurrect(){
+		this.attackButton.style.display = "none";
+		this.resurrectButton.style.display = "flex";
+	}
+	
+	showContinue(){
+		this.attackButton.style.display = "none";
+		this.continueButton.style.display = "flex";
 	}
 }
 

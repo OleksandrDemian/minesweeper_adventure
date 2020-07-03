@@ -7,12 +7,14 @@ import {Rogue, Thief, Warrior} from "./player/heros";
 import HeroController from "./controllers/hero";
 import InventoryController from "./controllers/inventory";
 import InfoPopUp from "./utils/infoPopUp";
+import BattleLogController from "./controllers/battleLog";
 
 const mapController = new MapController({ name: "map" });
 const battleController = new BattleController({ name: "battle" });
 const statsController = new StatsController({ name: "stats" });
 const heroController = new HeroController({ name: "hero" });
 const inventoryController = new InventoryController({ name: "inventory" });
+const battleLogController = new BattleLogController({ name: "battleLog" });
 
 let CUR_LEVEL = 0;
 
@@ -49,16 +51,19 @@ export const startGame = ({ hero }) => {
 	heroController.hide();
 	
 	showMap();
+	manageLevelLabel();
 };
 
 export const showMap = (info) => {
 	mapController.show(info);
 	battleController.hide();
+	battleLogController.hide();
 };
 
 export const showBattle = (info) => {
 	mapController.hide();
 	battleController.show(info);
+	battleLogController.show();
 };
 
 export const showInventory = (info) => {
@@ -73,13 +78,15 @@ export const Controllers = {
 	map: mapController,
 	battle: battleController,
 	stats: statsController,
-	inventory: inventoryController
+	inventory: inventoryController,
+	battleLog: battleLogController
 };
 
 export const nextLevel = () => {
 	CUR_LEVEL++;
 	const level = Levels[CUR_LEVEL];
 	mapController.buildLevel(level);
+	manageLevelLabel();
 };
 
 export const restart = () => {
@@ -91,6 +98,11 @@ export const restart = () => {
 	inventoryController.clear();
 	
 	heroController.show();
+	manageLevelLabel();
+};
+
+const manageLevelLabel = () => {
+	document.getElementById("levelLabel").innerText = (CUR_LEVEL+1).toString();
 };
 
 heroController.onStart(({ hero }) => {

@@ -18,6 +18,10 @@ const createItemElement = item => {
 		if(item.monoUse){
 			Controllers.inventory.dropItem(item);
 		}
+		
+		if(Controllers.battle.visible){
+			Controllers.battle.tick(false);
+		}
 	});
 	
 	drop.innerText = "Drop";

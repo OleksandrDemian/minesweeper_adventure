@@ -110,10 +110,11 @@ class Stats {
 		amount -= this.getArmor();
 		if(amount > 0){
 			this.health -= amount;
+			this.onUpdate && this.onUpdate();
+			this.animate && this.animate("health", "animateNegative");
 		}
 		
-		this.onUpdate && this.onUpdate();
-		this.animate && this.animate("health", "animateNegative");
+		return amount;
 	}
 }
 

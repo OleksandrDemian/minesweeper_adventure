@@ -14,6 +14,7 @@ body {
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     left: 0;
     top: 0;
     right: 0;
@@ -30,6 +31,16 @@ body {
     background-color: white;
 }
 
+[controller='battleLog'] {
+    position: relative;
+    width: 512px;
+    background-color: white;
+}
+
+#logs {
+    padding: 10px;
+}
+
 .border {
     border: 2px solid #303a52;
     border-radius: 10px;
@@ -41,17 +52,6 @@ body {
 
     margin: 10px 0px;
     z-index: 950;
-}
-
-#rightContainer {
-    width: 48vw;
-    height: 80vh;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    padding: 5px;
 }
 
 [controller='battle'] {
@@ -107,7 +107,7 @@ body {
     transform: scale(1.2, 1.2);
 }
 
-#attack {
+.button {
     background-color: white;
     user-select: none;
 
@@ -159,4 +159,12 @@ body {
     height: 100%;
     padding: 10px;
     overflow-y: auto;
+}
+
+.positive-text {
+    color: green;
+}
+
+.negative-text {
+    color: red;
 }

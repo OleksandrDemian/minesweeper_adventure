@@ -36,60 +36,77 @@
 </div>
 
 <div id="gameContainer">
-	<div id="rightContainer">
-		<div controller="stats">
-			<div class="character border">
-				<div>
-					<span name>Player</span>
-					<p><button id="showInventory">Inventory</button></p>
-				</div>
-				<div>
-					<span>Health</span>
-					<p health>--</p>
-				</div>
-				<div>
-					<span>Damage</span>
-					<p damage>--</p>
-				</div>
-				<div>
-					<span>Armor</span>
-					<p armor>--</p>
-				</div>
-				<div>
-					<span>Dexterity</span>
-					<p dexterity>--</p>
-				</div>
+	<h3>Level: <span id="levelLabel">--</span></h3>
+	
+	<div controller="stats">
+		<div class="character border">
+			<div>
+				<span name>Player</span>
+				<p><button id="showInventory">Inventory</button></p>
+			</div>
+			<div>
+				<span>Health</span>
+				<p health>--</p>
+			</div>
+			<div>
+				<span>Damage</span>
+				<p damage>--</p>
+			</div>
+			<div>
+				<span>Armor</span>
+				<p armor>--</p>
+			</div>
+			<div>
+				<span>Dexterity</span>
+				<p dexterity>--</p>
+			</div>
+		</div>
+	</div>
+	
+	<div controller="battleLog" class="border text-center">
+		<div id="logs">
+			<div logs>
+				<p>Player 4 damage</p>
+				<p>Enemy miss</p>
+			</div>
+		</div>
+	</div>
+	
+	<div id="map" controller="map">
+		<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>
+	</div>
+	
+	<div id="battle" controller="battle">
+		<div class="character border">
+			<h3 name>Player</h3>
+			<div>
+				<span>Health</span>
+				<p health>--</p>
+			</div>
+			<div>
+				<span>Damage</span>
+				<p damage>--</p>
+			</div>
+			<div>
+				<span>Armor</span>
+				<p defence>--</p>
+			</div>
+			<div>
+				<span>Dexterity</span>
+				<p dexterity>--</p>
 			</div>
 		</div>
 		
-		<div id="map" controller="map">
-			<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>
+		<div attack class="border button">
+			<div class="text-center">Attack</div>
 		</div>
 		
-		<div id="battle" controller="battle">
-			<div class="character border">
-				<h3 name>Player</h3>
-				<div>
-					<span>Health</span>
-					<p health>--</p>
-				</div>
-				<div>
-					<span>Damage</span>
-					<p damage>--</p>
-				</div>
-				<div>
-					<span>Armor</span>
-					<p defence>--</p>
-				</div>
-				<div>
-					<span>Dexterity</span>
-					<p dexterity>--</p>
-				</div>
-			</div>
-			
-			<div id="attack" class="border">
-				<div>Attack</div>
-			</div>
+		<div resurrect class="border button">
+			<div class="text-center">Resurrect</div>
+		</div>
+		
+		<div continue class="border button">
+			<div class="text-center">Continue adventure</div>
 		</div>
 	</div>
 </div>
