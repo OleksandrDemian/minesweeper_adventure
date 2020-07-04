@@ -3,7 +3,7 @@ import {Dungeon, Empty, Treasure} from "../entities/entities";
 import ImageMap from "../utils/ImageMap";
 import Controller from "./Controller";
 import {random} from "../utils/utils";
-import {Items} from "../items/items";
+import {ItemsPerLevel} from "../items/items";
 
 const CELL_SIZE = 32;
 const FONT_SIZE = 20;
@@ -211,9 +211,15 @@ class MapController extends Controller {
 		this.createMap();
 		
 		const Chest = (l) => {
+			const items = [];
+			
+			for(let i = 0; i < l; i++){
+				items.push(...ItemsPerLevel[i]);
+			}
+			
 			return () => {
-				const rand = random(0, l);
-				return Treasure(Items[rand]())
+				const rand = random(0, items.length);
+				return Treasure(items[rand]())
 			};
 		};
 		

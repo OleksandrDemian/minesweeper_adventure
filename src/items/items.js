@@ -12,6 +12,65 @@ function useHealPotion(stats){
 	stats.heal(this.data.heal);
 }
 
+const WeaponMaterials = {
+	Wood: {
+		damage: 0,
+		dexterity: 0
+	},
+	Steel: {
+		damage: 2,
+		dexterity: -1
+	},
+	Silver: {
+		damage: 3
+	},
+	Elder: {
+		damage: 4,
+		dexterity: 1
+	}
+};
+
+const WeaponTypes = {
+	Stick: {
+		damage: 1
+	},
+	Dagger: {
+		dexterity: 2
+	},
+	ShortSword: {
+		dexterity: 1,
+		damage: 1
+	},
+	Sword: {
+		damage: 2
+	},
+	LongSword: {
+		damage: 3,
+		dexterity: -1
+	},
+	TwoHandedSword: {
+		damage: 5,
+		dexterity: -2
+	},
+	Axe: {
+		damage: 5,
+		dexterity: -3
+	},
+	Mace: {
+		damage: 6,
+		dexterity: -5
+	}
+};
+
+const getNumberValue = (value) => Number(value || 0);
+
+const createWeaponData = (material, type) => {
+	const damage = getNumberValue(material.damage) + getNumberValue(type.damage);
+	const dexterity = getNumberValue(material.dexterity) + getNumberValue(type.dexterity);
+	
+	return { damage, dexterity };
+};
+
 //POTIONS
 export const SmallHealthPotion = () => new Item({
 	name: "Small health potion",
@@ -48,146 +107,105 @@ export const Dagger = () => new Item({
 	name: "Dagger",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 1,
-		dexterity: 2
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.Dagger)
 });
 
 export const SilverDagger = () => new Item({
 	name: "Silver dagger",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 2,
-		dexterity: 2
-	}
+	data: createWeaponData(WeaponMaterials.Silver, WeaponTypes.Dagger)
 });
 
 export const WoodenStick = () => new Item({
 	name: "Wooden stick",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 1
-	}
+	data: createWeaponData(WeaponMaterials.Wood, WeaponTypes.Stick)
 });
 
 export const ShortSword = () => new Item({
 	name: "Short sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 2,
-		dexterity: 1
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.ShortSword)
 });
 
 export const Sword = () => new Item({
 	name: "Sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 3
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.Sword)
 });
 
 export const LongSword = () => new Item({
 	name: "Long sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 4,
-		dexterity: -1
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.LongSword)
 });
 
 export const SilverSword = () => new Item({
 	name: "Silver sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 4
-	}
+	data: createWeaponData(WeaponMaterials.Silver, WeaponTypes.Sword)
 });
 
 export const ElderSword = () => new Item({
 	name: "Elder sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 5,
-		dexterity: 1
-	}
+	data: createWeaponData(WeaponMaterials.Elder, WeaponTypes.Sword)
 });
 
 export const ElderLongSword = () => new Item({
 	name: "Elder long sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 6
-	}
+	data: createWeaponData(WeaponMaterials.Elder, WeaponTypes.LongSword)
 });
 
 export const TwoHandedSword = () => new Item({
 	name: "Two handed sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 7,
-		dexterity: -2
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.TwoHandedSword)
 });
 
 export const TwoHandedSilverSword = () => new Item({
 	name: "Two handed silver sword",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 8,
-		dexterity: -2
-	}
+	data: createWeaponData(WeaponMaterials.Silver, WeaponTypes.TwoHandedSword)
 });
 
 export const Axe = () => new Item({
 	name: "Axe",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 5,
-		dexterity: -2
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.Axe)
 });
 
 export const SilverAxe = () => new Item({
-	name: "Axe",
+	name: "Silver axe",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 6,
-		dexterity: -2
-	}
+	data: createWeaponData(WeaponMaterials.Silver, WeaponTypes.Axe)
 });
 
 export const Mace = () => new Item({
 	name: "Mace",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 6,
-		dexterity: -4
-	}
+	data: createWeaponData(WeaponMaterials.Steel, WeaponTypes.Mace)
 });
 
 export const SilverMace = () => new Item({
 	name: "Silver mace",
 	type: ItemType.WEAPON,
 	effect: useWeapon,
-	data: {
-		damage: 7,
-		dexterity: -4
-	}
+	data: createWeaponData(WeaponMaterials.Silver, WeaponTypes.Mace)
 });
 
 //ARMOR
@@ -241,34 +259,38 @@ export const ElderArmor = () => new Item({
 	}
 });
 
-export const Items = [
-	//level 1
-	SmallHealthPotion,
-	WoodenStick,
-	Dagger,
-	Mace,
-	//level 2
-	ShortSword,
-	WoodenArmor,
-	LeatherArmor,
-	Axe,
-	//level 3
-	Sword,
-	LongSword,
-	HealthPotion,
-	SilverMace,
-	SteelArmor,
-	//level 4
-	TwoHandedSword,
-	SilverAxe,
-	SilverArmor,
-	SilverDagger,
-	ElderSword,
-	//level 5
-	TwoHandedSilverSword,
-	ElderArmor,
-	SilverSword,
-	BigHealthPotion,
-	ElderLongSword
-	//level 6
+export const ItemsPerLevel = [
+	[
+		SmallHealthPotion,
+		WoodenStick,
+		Dagger,
+		Mace,
+	],
+	[
+		ShortSword,
+		WoodenArmor,
+		LeatherArmor,
+		Axe,
+	],
+	[
+		Sword,
+		LongSword,
+		HealthPotion,
+		SilverMace,
+		SteelArmor,
+	],
+	[
+		TwoHandedSword,
+		SilverAxe,
+		SilverArmor,
+		SilverDagger,
+		ElderSword,
+	],
+	[
+		TwoHandedSilverSword,
+		ElderArmor,
+		SilverSword,
+		BigHealthPotion,
+		ElderLongSword
+	],
 ];

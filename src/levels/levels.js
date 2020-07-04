@@ -3,7 +3,7 @@ import {DarkElf, DarkKnight, Goblin, Orc, Snake} from "../entities/entities";
 export const Levels = [
 	{
 		maxTreasures: 5,
-		maxItemLevel: 4,
+		maxItemLevel: 1,
 		enemies: [
 			{ enemy: Goblin, qty: 12 },
 			{ enemy: Snake, qty: 8 }
@@ -11,7 +11,7 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 4,
-		maxItemLevel: 8,
+		maxItemLevel: 2,
 		enemies: [
 			{ enemy: Orc, qty: 5 },
 			{ enemy: Goblin, qty: 10 },
@@ -20,7 +20,7 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 3,
-		maxItemLevel: 12,
+		maxItemLevel: 3,
 		enemies: [
 			{ enemy: Orc, qty: 10 },
 			{ enemy: DarkElf, qty: 10 },
@@ -29,7 +29,7 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 4,
-		maxItemLevel: 16,
+		maxItemLevel: 4,
 		enemies: [
 			{ enemy: Orc, qty: 10 },
 			{ enemy: DarkElf, qty: 10 },
@@ -40,7 +40,7 @@ export const Levels = [
 	},
 	{
 		maxTreasures: 3,
-		maxItemLevel: 20,
+		maxItemLevel: 5,
 		enemies: [
 			{ enemy: Orc, qty: 15 },
 			{ enemy: DarkElf, qty: 20 },
