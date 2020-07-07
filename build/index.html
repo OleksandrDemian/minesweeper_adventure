@@ -29,7 +29,7 @@
 </div>
 
 <div id="infoPopUp" class="popUpContainer transparent">
-	<div class="border popUpContent text-center">
+	<div class="card popUpContent text-center">
 		<h3 title>Title</h3>
 		<p info>Message</p>
 		<button id="closeInfo">Ok</button>
@@ -37,7 +37,7 @@
 </div>
 
 <div class="popUpContainer" controller="hero">
-	<div class="popUpContent border">
+	<div class="popUpContent card">
 		<h3>Select your hero:</h3>
 		<select id="heroSelect">
 			<option value="rogue">Rogue</option>
@@ -49,34 +49,34 @@
 </div>
 
 <div id="gameContainer">
-	<h3>Level: <span id="levelLabel">--</span></h3>
+	<h3 class="light-text">Level: <span id="levelLabel">--</span></h3>
 	
 	<div controller="stats">
-		<div class="character border">
+		<div class="character card">
 			<div>
 				<span name>Player</span>
-				<p><button id="showInventory">Inventory</button></p>
+				<button id="showInventory">Inventory</button>
 			</div>
 			<div>
 				<span>Health</span>
-				<p health>--</p>
+				<span health>--</span>
 			</div>
 			<div>
 				<span>Damage</span>
-				<p damage>--</p>
+				<span damage>--</span>
 			</div>
 			<div>
 				<span>Armor</span>
-				<p armor>--</p>
+				<span armor>--</span>
 			</div>
 			<div>
 				<span>Dexterity</span>
-				<p dexterity>--</p>
+				<span dexterity>--</span>
 			</div>
 		</div>
 	</div>
 	
-	<div controller="battleLog" class="border text-center">
+	<div controller="battleLog" class="card text-center">
 		<div id="logs">
 			<div logs>
 				<p>Player 4 damage</p>
@@ -86,39 +86,39 @@
 	</div>
 	
 	<div id="map" controller="map">
-		<canvas class="border" id="gameCanvas" width="512px" height="512px"></canvas>
+		<canvas class="card" id="gameCanvas" width="512px" height="512px"></canvas>
 	</div>
 	
 	<div id="battle" controller="battle">
-		<div class="character border">
+		<div class="character card">
 			<h3 name>Player</h3>
 			<div>
 				<span>Health</span>
-				<p health>--</p>
+				<span health>--</span>
 			</div>
 			<div>
 				<span>Damage</span>
-				<p damage>--</p>
+				<span damage>--</span>
 			</div>
 			<div>
 				<span>Armor</span>
-				<p defence>--</p>
+				<span defence>--</span>
 			</div>
 			<div>
 				<span>Dexterity</span>
-				<p dexterity>--</p>
+				<span dexterity>--</span>
 			</div>
 		</div>
 		
-		<div attack class="border button">
+		<div attack class="card button">
 			<div class="text-center">Attack</div>
 		</div>
 		
-		<div resurrect class="border button">
+		<div resurrect class="card button">
 			<div class="text-center">Resurrect</div>
 		</div>
 		
-		<div continue class="border button">
+		<div continue class="card button">
 			<div class="text-center">Continue adventure</div>
 		</div>
 	</div>

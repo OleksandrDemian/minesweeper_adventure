@@ -74,13 +74,13 @@ class BattleController extends Controller {
 			if(damage > 0){
 				this.updateUi();
 				this.animate("health", "animateNegative");
-				Controllers.battleLog.append(this.enemy.name + " gets " + damage + " damage", "positive-text");
+				Controllers.battleLog.append(this.enemy.name + " gets " + damage + " damage", "light-text");
 			} else {
-				Controllers.battleLog.append(this.player.name + " miss " + this.enemy.name, "negative-text");
+				Controllers.battleLog.append(this.player.name + " miss " + this.enemy.name, "accent-text");
 			}
 			
 			if(this.enemy.health < 1){
-				Controllers.battleLog.append(this.enemy.name + " is dead", "positive-text");
+				Controllers.battleLog.append(this.enemy.name + " is dead", "light-text");
 				this.showContinue();
 				return;
 			}
@@ -97,13 +97,13 @@ class BattleController extends Controller {
 		
 		damage = this.player.hit(damage);
 		if(damage > 0){
-			Controllers.battleLog.append(this.player.name + " gets " + damage + " damage", "negative-text");
+			Controllers.battleLog.append(this.player.name + " gets " + damage + " damage", "accent-text");
 		} else {
-			Controllers.battleLog.append(this.enemy.name + " miss " + this.player.name, "positive-text");
+			Controllers.battleLog.append(this.enemy.name + " miss " + this.player.name, "light-text");
 		}
 		
 		if(this.player.getHealth() < 1){
-			Controllers.battleLog.append(this.player.name + " is dead", "negative-text");
+			Controllers.battleLog.append(this.player.name + " is dead", "accent-text");
 			Controllers.stats.hideInventoryButton();
 			this.showResurrect();
 		}

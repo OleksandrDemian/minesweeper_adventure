@@ -11,12 +11,12 @@ const MAP_SIZE = 512;
 const CELLS = MAP_SIZE / CELL_SIZE;
 
 const TOP_GRID = {
-	a: "#303a52",
-	b: "#574b90"
+	a: "#3D3C3E",
+	b: "#8B4D59"
 };
 const BOTTOM_GRID = {
-	a: "white",
-	b: "papayawhip"
+	a: "#C1BBAE",
+	b: "#c1a79d"
 };
 
 class MapController extends Controller {

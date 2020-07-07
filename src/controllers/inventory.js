@@ -29,7 +29,7 @@ const createItemElement = item => {
 		Controllers.inventory.dropItem(item);
 	});
 	
-	itemUi.classList.add("border");
+	itemUi.classList.add("card");
 	itemUi.appendChild(name);
 	itemUi.appendChild(use);
 	itemUi.appendChild(drop);

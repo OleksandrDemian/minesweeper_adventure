@@ -1,3 +1,9 @@
+:root {
+    --dark: #3D3C3E;
+    --light: #C1BBAE;
+    --accent: #8B4D59;
+}
+
 @font-face {
     font-family: 'text';
     src: url('./public/LexendDeca-Regular.ttf');
@@ -7,7 +13,8 @@ body {
     font-family: text;
     padding: 0;
     margin: 0;
-    background-color: papayawhip;
+    background-color: var(--dark);
+    color: var(--accent);
 }
 
 #gameContainer {
@@ -25,16 +32,25 @@ body {
 }
 
 .character {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     text-align: center;
-    background-color: white;
+    background-color: var(--light);
+}
+
+.character > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    min-height: 75px;
 }
 
 [controller='battleLog'] {
     position: relative;
     width: 512px;
-    background-color: white;
+    background-color: var(--light);
 }
 
 #logs {
@@ -42,7 +58,7 @@ body {
 }
 
 .border {
-    border: 2px solid #303a52;
+    border: 2px solid var(--light);
     border-radius: 10px;
 }
 
@@ -91,24 +107,24 @@ body {
 }
 
 .animateNegative {
-    color: red;
+    color: var(--accent);
     transform: scale(2, 2);
 }
 
 .animatePositive {
-    color: green;
+    color: var(--light);
     transform: scale(2, 2);
 }
 
 .animateAttack {
-    color: white !important;
-    background-color: red !important;
+    color: var(--light) !important;
+    background-color: var(--accent) !important;
     border-color: transparent;
     transform: scale(1.2, 1.2);
 }
 
 .button {
-    background-color: white;
+    background-color: var(--light);
     user-select: none;
 
     margin-left: auto;
@@ -134,19 +150,19 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #303a52;
+    background-color: var(--dark);
     z-index: 900;
 }
 
 .popUpContainer.transparent {
-    background-color: rgba(48, 58, 82, 0.9);
+    background-color: rgba(61, 60, 62, 0.8)
 }
 
 .popUpContent {
     width: fit-content;
     height: fit-content;
     min-width: 250px;
-    background-color: white;
+    background-color: var(--light);
     padding: 15px;
     max-height: 50vh;
 }
@@ -161,19 +177,30 @@ body {
     overflow-y: auto;
 }
 
-.positive-text {
-    color: green;
+.light-text {
+    color: var(--light);
 }
 
-.negative-text {
-    color: red;
+.accent-text {
+    color: var(--accent);
+}
+
+.dark-text {
+    color: var(--accent);
 }
 
 select, button {
-    border: none;
+    border: 2px solid var(--light);
     padding: 10px;
     border-radius: 5px;
-    background-color: #303a52;
-    color: white;
+    background-color: var(--dark);
+    color: var(--light);
     margin: 2px;
+}
+
+.card {
+    background-color: var(--dark);
+    color: var(--light);
+    border: 2px solid var(--light);
+    border-radius: 10px;
 }

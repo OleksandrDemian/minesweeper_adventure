@@ -46,11 +46,11 @@ class StatsController extends Controller {
 	}
 	
 	showInventoryButton(){
-		this.inventoryButton.style.display = "block";
+		this.inventoryButton.disabled = false;
 	}
 	
 	hideInventoryButton(){
-		this.inventoryButton.style.display = "none";
+		this.inventoryButton.disabled = true;
 	}
 }
 
