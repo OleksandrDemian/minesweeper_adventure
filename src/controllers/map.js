@@ -15,7 +15,7 @@ const TOP_GRID = {
 	b: "#8B4D59"
 };
 const BOTTOM_GRID = {
-	a: "#C1BBAE",
+	a: "#EBE5D8",
 	b: "#c1a79d"
 };
 
