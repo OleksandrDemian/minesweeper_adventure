@@ -1,7 +1,7 @@
 :root {
-    --dark: #3D3C3E;
-    --light: #EBE5D8;
-    --accent: #8B4D59;
+    --dark: #37373e;
+    --light: white;
+    --accent: #303a52;
 }
 
 @font-face {
@@ -13,7 +13,7 @@ body {
     font-family: text;
     padding: 0;
     margin: 0;
-    background-color: var(--dark);
+    background-color: papayawhip;
     color: var(--accent);
 }
 
@@ -58,7 +58,7 @@ body {
 }
 
 .border {
-    border: 2px solid var(--light);
+    border: 2px solid #303a52;
     border-radius: 10px;
 }
 
@@ -100,6 +100,7 @@ body {
     padding: 5px;
     display: flex;
     flex-direction: column;
+    min-width: 200px;
 }
 
 .text-center {
@@ -107,12 +108,12 @@ body {
 }
 
 .animateNegative {
-    color: var(--accent);
+    color: indianred;
     transform: scale(2, 2);
 }
 
 .animatePositive {
-    color: var(--light);
+    color: #303a52;
     transform: scale(2, 2);
 }
 
@@ -178,11 +179,11 @@ body {
 }
 
 .light-text {
-    color: var(--light);
+    color: var(--accent);
 }
 
 .accent-text {
-    color: var(--accent);
+    color: indianred;
 }
 
 .dark-text {
@@ -199,8 +200,8 @@ select, button {
 }
 
 .card {
-    background-color: var(--dark);
-    color: var(--light);
-    border: 2px solid var(--light);
+    background-color: var(--light);
+    color: var(--accent);
+    border: 2px solid #303a52;
     border-radius: 10px;
 }
